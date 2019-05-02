@@ -12,10 +12,12 @@ class Element {
 protected:
     double length;
     Vector load_vector;
+    Matrix stiffness_matrix;
 
 public:
     double getLength() const;
     Vector getLoadVector() const;
+    Matrix getStiffnessMatrix() const;
 };
 
 

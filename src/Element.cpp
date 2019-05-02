@@ -9,3 +9,8 @@ Vector Element::getLoadVector() const
 {
     return load_vector;
 }
+
+Matrix Element::getStiffnessMatrix() const
+{
+    return stiffness_matrix;
+}
