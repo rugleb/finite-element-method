@@ -1,0 +1,16 @@
+language: cpp
+
+compiler:
+  - gcc
+
+script:
+  - ./compile.sh
+  - cd build
+  - ./app.out 100
+
+notifications:
+  email:
+    recipients:
+      - rugleb@gmail.com
+    on_success: never
+    on_failure: always
