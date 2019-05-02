@@ -11,9 +11,11 @@ typedef std::vector<Vector> Matrix;
 class Element {
 protected:
     double length;
+    Vector load_vector;
 
 public:
     double getLength() const;
+    Vector getLoadVector() const;
 };
 
 
