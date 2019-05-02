@@ -20,5 +20,9 @@ int main(int argc, char* argv[])
     auto cube = new CubeElement(length);
     auto linear = new LinearElement(length);
 
+    Solution solution;
+
+    auto error = solution.calculate();
+
     return 0;
 }

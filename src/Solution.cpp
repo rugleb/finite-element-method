@@ -12,3 +12,8 @@ double Solution::getAnalyticalSolution(double x)
 {
     return -1.11 * pow(10., -9.) * exp(5. * x / 4.) + x - 6.;
 }
+
+double Solution::calculate()
+{
+    return 0.;
+}

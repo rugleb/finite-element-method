@@ -13,6 +13,8 @@ public:
     explicit Solution();
 
     double getAnalyticalSolution(double x);
+
+    double calculate();
 };
 
 
