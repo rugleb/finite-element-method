@@ -1,6 +1,3 @@
-#include <map>
-#include <string>
-
 #include "src/Solution.h"
 #include "src/CubeElement.h"
 #include "src/LinearElement.h"
