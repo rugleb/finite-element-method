@@ -31,5 +31,8 @@ int main(int argc, char* argv[])
         solution.report(LEFT_BORDER);
     }
 
+    delete cube;
+    delete linear;
+
     return 0;
 }
