@@ -11,6 +11,8 @@ protected:
     Matrix stiffness_matrix;
 public:
     explicit Solution();
+
+    double getAnalyticalSolution(double x);
 };
 
 
