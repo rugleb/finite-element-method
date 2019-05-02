@@ -1,3 +1,4 @@
+#include <map>
 #include <string>
 
 #include "src/Solution.h"
@@ -20,13 +21,18 @@ int main(int argc, char* argv[])
     auto cube = new CubeElement(length);
     auto linear = new LinearElement(length);
 
-    std::vector<Solution> solutions = {
-        Solution(linear, elements),
-        Solution(cube, elements),
+    std::map<Solution *, std::string> items = {
+        { new Solution(linear, elements), "linear.txt" },
+        { new Solution(cube, elements), "cube.txt" },
     };
 
-    for (auto &solution : solutions) {
-        solution.calculate();
+    for (auto &item : items) {
+
+        auto solution = item.first;
+        auto file = item.second;
+
+        solution->calculate();
+        solution->analyse(LEFT_BORDER);
     }
 
     return 0;

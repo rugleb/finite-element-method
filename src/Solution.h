@@ -23,7 +23,8 @@ public:
 
     static double getAnalyticalSolution(double x);
 
-    double calculate();
+    void calculate();
+    void analyse(double x);
 };
 
 

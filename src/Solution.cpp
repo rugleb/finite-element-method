@@ -19,13 +19,11 @@ double Solution::getAnalyticalSolution(double x)
     return -1.11 * pow(10., -9.) * exp(5. * x / 4.) + x - 6.;
 }
 
-double Solution::calculate()
+void Solution::calculate()
 {
     assembling();
     setConditions();
     solve();
-
-    return 0.;
 }
 
 void Solution::assembling()
@@ -76,4 +74,21 @@ void Solution::solve()
     for (std::size_t i = 0, j = 0; i < system.size(); i += element->getDimension() - 1, j++) {
         solution[j] = system[i];
     }
+}
+
+void Solution::analyse(double x)
+{
+    double max_error = 0.;
+
+    for (std::size_t i = 0; i < elementsCount; i++) {
+
+        auto analytic = getAnalyticalSolution(x);
+        auto error = fabs((solution[i] - analytic) / analytic);
+
+        max_error = fmax(error, max_error);
+
+        x += element->getLength();
+    }
+
+    std::cout << "Max error: " << max_error << "%" << std::endl;
 }
