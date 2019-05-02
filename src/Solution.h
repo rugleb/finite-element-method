@@ -3,14 +3,23 @@
 
 
 #include "Element.h"
+#include "matrix.h"
 
 
 class Solution {
 protected:
+    Element* element;
+    std::size_t cardinality;
+
     Vector load_vector;
     Matrix stiffness_matrix;
+
+    void assembling();
+    void setConditions();
+    void solving();
+
 public:
-    explicit Solution();
+    explicit Solution(Element* e, std::size_t c);
 
     double getAnalyticalSolution(double x);
 

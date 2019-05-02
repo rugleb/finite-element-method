@@ -20,9 +20,14 @@ int main(int argc, char* argv[])
     auto cube = new CubeElement(length);
     auto linear = new LinearElement(length);
 
-    Solution solution;
+    std::vector<Solution> solutions = {
+        Solution(linear, elements),
+        Solution(cube, elements),
+    };
 
-    auto error = solution.calculate();
+    for (auto &solution : solutions) {
+        solution.calculate();
+    }
 
     return 0;
 }
