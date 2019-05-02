@@ -2,7 +2,7 @@
 #define ELEMENT_H
 
 
-#include "matrix.h"
+#include "../libs/matrix.h"
 
 
 class Element {
