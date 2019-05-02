@@ -20,7 +20,7 @@ protected:
 public:
     explicit Solution(Element* e, std::size_t c);
 
-    double getAnalyticalSolution(double x);
+    static double getAnalyticalSolution(double x);
 
     double calculate();
 };
