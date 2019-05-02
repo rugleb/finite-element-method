@@ -7,11 +7,10 @@ Solution::Solution(Element* e, std::size_t c)
     element = e;
     cardinality = c;
 
-    std::size_t local_dimension = element->getLoadVector().size();
-    std::size_t dimension = cardinality * (local_dimension - 1) + 1;
+    auto size = cardinality * (e->getDimension() - 1) + 1;
 
-    load_vector = Vector(dimension, 0.);
-    stiffness_matrix = Matrix(dimension, Vector(dimension, 0.));
+    load_vector = Vector(size, 0.);
+    stiffness_matrix = Matrix(size, Vector(size, 0.));
 }
 
 double Solution::getAnalyticalSolution(double x)

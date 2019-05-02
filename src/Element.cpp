@@ -30,3 +30,8 @@ Matrix Element::getStiffnessMatrix() const
 {
     return stiffness_matrix;
 }
+
+std::size_t Element::getDimension() const
+{
+    return getLoadVector().size();
+}

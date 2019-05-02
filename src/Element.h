@@ -16,6 +16,8 @@ public:
     ~Element();
 
     double getLength() const;
+    std::size_t getDimension() const;
+
     Vector getLoadVector() const;
     Matrix getStiffnessMatrix() const;
 };
