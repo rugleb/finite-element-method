@@ -16,6 +16,7 @@ protected:
 
 public:
     explicit Element(double l);
+    ~Element();
 
     double getLength() const;
     Vector getLoadVector() const;
