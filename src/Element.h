@@ -15,6 +15,8 @@ protected:
     Matrix stiffness_matrix;
 
 public:
+    explicit Element(double l);
+
     double getLength() const;
     Vector getLoadVector() const;
     Matrix getStiffnessMatrix() const;

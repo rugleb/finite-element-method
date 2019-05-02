@@ -1,5 +1,10 @@
 #include "Element.h"
 
+Element::Element(double l)
+{
+    length = l;
+}
+
 double Element::getLength() const
 {
     return length;
