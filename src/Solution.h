@@ -8,17 +8,18 @@
 class Solution {
 protected:
     Element* element;
-    std::size_t cardinality;
+    std::size_t elementsCount;
 
+    Vector solution;
     Vector load_vector;
     Matrix stiffness_matrix;
 
     void assembling();
     void setConditions();
-    void solving();
+    void solve();
 
 public:
-    explicit Solution(Element* e, std::size_t c);
+    explicit Solution(Element* e, std::size_t elementsCount);
 
     static double getAnalyticalSolution(double x);
 

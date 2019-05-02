@@ -2,13 +2,14 @@
 
 #include <cmath>
 
-Solution::Solution(Element* e, std::size_t c)
+Solution::Solution(Element* e, std::size_t elements)
 {
     element = e;
-    cardinality = c;
+    elementsCount = elements;
 
-    auto size = cardinality * (e->getDimension() - 1) + 1;
+    auto size = elementsCount * (e->getDimension() - 1) + 1;
 
+    solution = Vector(size, 0.);
     load_vector = Vector(size, 0.);
     stiffness_matrix = Matrix(size, Vector(size, 0.));
 }
@@ -22,7 +23,7 @@ double Solution::calculate()
 {
     assembling();
     setConditions();
-    solving();
+    solve();
 
     return 0.;
 }
@@ -32,9 +33,9 @@ void Solution::assembling()
     Vector local_load_vector = element->getLoadVector();
     Matrix local_stiffness_matrix = element->getStiffnessMatrix();
 
-    std::size_t local_dimension = local_load_vector.size();
+    std::size_t local_dimension = element->getDimension();
 
-    for (std::size_t i = 0, j = 0; i < cardinality; i++, j += local_dimension - 1) {
+    for (std::size_t i = 0, j = 0; i < elementsCount; i++, j += local_dimension - 1) {
 
         for (std::size_t ii = 0; ii < local_dimension; ii++) {
             for (std::size_t jj = 0; jj < local_dimension; jj++) {
@@ -51,38 +52,28 @@ void Solution::assembling()
 
 void Solution::setConditions()
 {
-    std::size_t dimension = stiffness_matrix.size();
-
     // set border condition on the right end: u(19) = -10
-    for (std::size_t i = 0; i < dimension; i++) {
-        load_vector[i] -= stiffness_matrix[i][dimension - 1] * (-10.);
-        stiffness_matrix[i][dimension - 1] = 0.;
+    for (std::size_t i = 0; i < load_vector.size(); i++) {
+        load_vector[i] -= -10 * stiffness_matrix[i].back();
+        stiffness_matrix[i].back() = 0.;
     }
 
-    stiffness_matrix[dimension - 1][dimension - 1] = 4.;
+    stiffness_matrix.back().back() = 4.;
 
     // Set border condition on the left end: u(1) = -5
-    for (std::size_t i = 0; i < dimension; i++) {
-        load_vector[i] -= stiffness_matrix[i][0] * (-5.);
+    for (std::size_t i = 0; i < load_vector.size(); i++) {
+        load_vector[i] -= -5 * stiffness_matrix[i][0];
         stiffness_matrix[i][0] = 0.;
     }
 
     stiffness_matrix[0][0] = -4.;
 }
 
-void Solution::solving()
+void Solution::solve()
 {
-    Vector solutions = gauss(stiffness_matrix, load_vector);
+    Vector system = gauss(stiffness_matrix, load_vector);
 
-    double x = 1.;
-    int i = 0;
-
-    while (x < 19.) {
-
-        printf("%3.3f %3.3f %3.3f\n", solutions[i], getAnalyticalSolution(x), x);
-
-        x += element->getLength();
-        i += element->getLoadVector().size() - 1;
+    for (std::size_t i = 0, j = 0; i < system.size(); i += element->getDimension() - 1, j++) {
+        solution[j] = system[i];
     }
-
 }
