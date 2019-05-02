@@ -9,7 +9,11 @@ typedef std::vector<Vector> Matrix;
 
 
 class Element {
+protected:
+    double length;
 
+public:
+    double getLength() const;
 };
 
 
