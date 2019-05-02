@@ -1,9 +1,11 @@
 #include "Solution.h"
 
 #include <cmath>
+#include <fstream>
 
-Solution::Solution(Element* e, std::size_t elements)
+Solution::Solution(const std::string& n, Element* e, std::size_t elements)
 {
+    name = n;
     element = e;
     elementsCount = elements;
 
@@ -76,9 +78,11 @@ void Solution::solve()
     }
 }
 
-void Solution::analyse(double x)
+void Solution::report(double x)
 {
     double max_error = 0.;
+
+    std::ofstream file(name + ".txt");
 
     for (std::size_t i = 0; i < elementsCount; i++) {
 
@@ -87,8 +91,13 @@ void Solution::analyse(double x)
 
         max_error = fmax(error, max_error);
 
+        file << x << "\t" << analytic << "\t" << solution[i] << std::endl;
+
         x += element->getLength();
     }
 
-    std::cout << "Max error: " << max_error << "%" << std::endl;
+    file.close();
+
+    std::cout << name << " solution:" << std::endl;
+    std::cout << "---- Max error: " << max_error << "%" << std::endl;
 }

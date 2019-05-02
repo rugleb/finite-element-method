@@ -8,6 +8,7 @@
 class Solution {
 protected:
     Element* element;
+    std::string name;
     std::size_t elementsCount;
 
     Vector solution;
@@ -19,12 +20,12 @@ protected:
     void solve();
 
 public:
-    explicit Solution(Element* e, std::size_t elementsCount);
+    explicit Solution(const std::string& name, Element* e, std::size_t elementsCount);
 
     static double getAnalyticalSolution(double x);
 
     void calculate();
-    void analyse(double x);
+    void report(double x);
 };
 
 

@@ -21,18 +21,14 @@ int main(int argc, char* argv[])
     auto cube = new CubeElement(length);
     auto linear = new LinearElement(length);
 
-    std::map<Solution *, std::string> items = {
-        { new Solution(linear, elements), "linear.txt" },
-        { new Solution(cube, elements), "cube.txt" },
+    std::vector<Solution> solutions = {
+        Solution("Linear", linear, elements),
+        Solution("Cube", cube, elements),
     };
 
-    for (auto &item : items) {
-
-        auto solution = item.first;
-        auto file = item.second;
-
-        solution->calculate();
-        solution->analyse(LEFT_BORDER);
+    for (auto &solution : solutions) {
+        solution.calculate();
+        solution.report(LEFT_BORDER);
     }
 
     return 0;
