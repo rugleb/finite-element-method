@@ -5,8 +5,7 @@ compiler:
 
 script:
   - ./compile.sh
-  - cd build
-  - ./app.out 100
+  - ./build/fem 100
 
 notifications:
   email:

@@ -15,7 +15,8 @@ The program solves the equation by the finite element method, compares the resul
 ## Compile & running
 
 ```bash
-./compile.sh && cd build && ./app.out
+./compile.sh    # compile
+./build/fem     # run
 ```
 
 ## Output
