@@ -1,6 +1,7 @@
 # Finite element method
 
 [![Build Status](https://travis-ci.com/rugleb/finite-element-method.svg?branch=master)](https://travis-ci.com/rugleb/finite-element-method)
+[![Language](https://img.shields.io/badge/Lang-C++11-green.svg)]()
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## About
